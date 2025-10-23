@@ -1,0 +1,254 @@
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+   /* --- Cài đặt Chung --- */
+        body {
+            /* Sử dụng font 'Roboto' cho giống với thiết kế */
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+       
+        /* --- Container chính của CV --- */
+        .resume-container {
+            display: flex; /* Dùng Flexbox cho 2 cột */
+            width: 900px;
+            max-width: 100%;
+            margin: 30px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Cột Bên Trái (Sidebar) --- */
+        .sidebar {
+            width: 33%;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        /* --- Cột Bên Phải (Nội dung) --- */
+        .main-content {
+            width: 67%;
+            padding: 40px;
+            border-left: 1px solid #eee; /* Đường kẻ mờ ngăn cách 2 cột */
+        }
+
+        /* --- Phần Header (Tên) --- */
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header .first-name {
+            font-size: 2.2em;
+            font-weight: 300; /* Chữ mỏng */
+            letter-spacing: 2px;
+            display: block;
+            margin: 0;
+        }
+
+        .header .last-name {
+            font-size: 2.8em;
+            font-weight: 900; /* Chữ rất đậm */
+            letter-spacing: 2px;
+            margin: -10px 0 5px 0;
+            color: #333;
+        }
+
+        .header .job-title {
+            font-size: 1em;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #777;
+        }
+        
+        /* --- Tiêu đề các mục (CONTACT, SKILLS, v.v.) --- */
+        h3.section-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #333; /* Đường gạch chân tiêu đề */
+        }
+        
+        /* --- Cột Trái: Contact --- */
+        .contact ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact li {
+            margin-bottom: 10px;
+            padding-left: 30px; /* Chừa chỗ cho icon */
+            position: relative;
+        }
+        /* Tạo icon tròn bằng CSS */
+        .contact li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px; /* Căn chỉnh vị trí vòng tròn */
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #333; /* Màu đen cho icon */
+        }
+        
+        /* --- Cột Trái: Skills & Education (Dùng chung style timeline) --- */
+        .skills, .education {
+            margin-top: 30px;
+        }
+        
+        .skills h4 {
+            font-size: 0.9em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-list {
+            list-style: none;
+            padding-left: 15px; /* Chừa chỗ cho đường timeline */
+            margin: 0;
+            position: relative;
+        }
+
+        /* Đường kẻ dọc của timeline */
+        .timeline-list::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background-color: #eee; /* Màu xám rất nhạt */
+        }
+
+        .timeline-list li {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        /* Vòng tròn trên đường timeline */
+        .timeline-list li::before {
+            content: '';
+            position: absolute;
+            left: -11px; /* Đặt vòng tròn đè lên đường kẻ */
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff; /* Nền trắng */
+            border: 2px solid #ccc; /* Viền xám */
+            z-index: 1; /* Nằm trên đường kẻ */
+        }
+        
+        .education h5 {
+            font-size: 1.1em;
+            color: #333;
+            margin: 0;
+        }
+        .education p {
+            margin: 3px 0 0 0;
+            font-weight: 300;
+        }
+
+        /* --- Cột Phải: Profile Pic --- */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            float: right; /* Cho ảnh sang phải */
+            margin-left: 20px;
+        }
+
+        /* --- Cột Phải: Profile --- */
+        .profile {
+            /* clear: right; */ /* Xóa float để nội dung không bị ảnh hưởng */
+            margin-top: 30px;
+        }
+        .profile p {
+            margin: 0;
+        }
+
+        /* --- Cột Phải: Experience --- */
+        .experience {
+            margin-top: 30px;
+        }
+        
+        /* Ghi đè style cho .timeline-list bên cột phải */
+        .main-content .timeline-list {
+            padding-left: 20px;
+        }
+        .main-content .timeline-list li::before {
+            left: -16px; /* Điều chỉnh lại vị trí vòng tròn */
+        }
+
+        .job {
+            margin-bottom: 25px;
+        }
+        
+        .job-title-date {
+            display: flex;
+            justify-content: space-between; /* Đẩy ngày tháng sang phải */
+            align-items: center;
+        }
+        
+        .job-title-date h4 {
+            font-size: 1.2em;
+            color: #333;
+            margin: 0;
+            font-weight: 700;
+        }
+        .job-title-date span {
+            font-size: 0.9em;
+            color: #777;
+            font-weight: 700;
+        }
+        
+        .job h5 {
+            font-size: 1em;
+            color: #555;
+            font-weight: 400;
+            margin: 5px 0 10px 0;
+        }
+        
+        .job p {
+            margin: 0 0 10px 0;
+        }
+        
+        .job ul {
+            padding-left: 20px;
+            margin: 0;
+            list-style: disc;
+        }
+        
+        .job li {
+            margin-bottom: 5px;
+        }
+        
+        .profile-picture {
+  /* 1. Thu nhỏ kích thước ảnh */
+  width: 180px;  /* Chiều rộng: bạn có thể thay đổi số này để ảnh lớn hoặc nhỏ hơn */
+  height: 180px; /* Chiều cao: nên để bằng width để ảnh không bị méo khi thành tròn */
+
+  /* 2. Biến ảnh thành hình tròn */
+  border-radius: 50%;
+
+  /* 3. Đảm bảo ảnh không bị méo hoặc giãn khi bị cắt thành hình tròn */
+  object-fit: cover;
+
+  /* 4. (Tùy chọn) Đặt ảnh sang bên phải và tạo khoảng cách */
+  float: right;
+  margin-left: 20px; /* Khoảng cách với nội dung bên trái */
+  margin-bottom: 20px; /* Khoảng cách với nội dung bên dưới */
+       }
