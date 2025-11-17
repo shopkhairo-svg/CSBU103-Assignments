@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Simple Photo Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="topbar">
+        <h1>My Gallery</h1>
+        <div class="controls">
+            <input id="search" type="search" placeholder="Tìm ảnh theo tên..." />
+            <input id="urlInput" type="url" placeholder="Thêm ảnh từ URL, bấm Enter" />
+            <label class="btn">
+                Upload
+                <input id="fileInput" type="file" accept="image/*" multiple />
+            </label>
+            <button id="resetBtn" title="Reset gallery">Reset</button>
+        </div>
+    </header>
+
+    <nav id="album-filters" class="filters">
+        <button data-filter="all" class="filter-btn active">All</button>
+        <button data-filter="city" class="filter-btn">City</button>
+        <button data-filter="forest" class="filter-btn">Forest</button>
+        <button data-filter="mountain" class="filter-btn">Mountain</button>
+        <button data-filter="people" class="filter-btn">People</button>
+    </nav>
+
+    <main class="container">
+        <section id="gallery" class="gallery" aria-live="polite">
+            <!-- Ảnh sẽ được render ở đây -->
+        </section>
+        <div id="empty" class="empty" hidden>
+            <p>Không có ảnh. Thêm bằng URL hoặc Upload.</p>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="nav prev" id="lbPrev" aria-label="Previous">&#10094;</button>
+        <div class="lb-content">
+            <img id="lbImage" src="" alt="" />
+            <div id="lbCaption" class="caption"></div>
+        </div>
+        <button class="nav next" id="lbNext" aria-label="Next">&#10095;</button>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

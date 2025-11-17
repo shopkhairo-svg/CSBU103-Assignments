@@ -1,0 +1,268 @@
+:root{
+    --bg:#111213;
+    --card:#1e1f21;
+    --muted:#9aa0a6;
+    --accent:#0a84ff;
+    --gap:14px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+/* Top bar */
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 12px;
+    padding:16px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.topbar h1{margin:0;font-size:20px;font-weight:700}
+.controls{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+/* Inputs / buttons */
+.controls input[type="search"],
+.controls input[type="url"]{
+    min-width:200px;
+    padding:8px 10px;
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.06);
+    background:rgba(255,255,255,0.02);
+    color: #fff;
+    outline:none;
+}
+.controls input::placeholder{color:var(--muted)}
+.btn{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 12px;
+    border-radius:8px;
+    background:var(--card);
+    border:1px solid rgba(255,255,255,0.03);
+    cursor:pointer;
+    color: #fff;
+}
+.btn input[type=file]{position:absolute;left:0;top:0;opacity:0;width:100%;height:100%;cursor:pointer}
+/*THEM/ XOA ANH*/
+/* --- Nút xóa trên Card --- */
+.delete-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.1s ease;
+    z-index: 10; /* Đảm bảo nó nằm trên ảnh */
+}
+
+.card:hover .delete-btn {
+    opacity: 1; /* Hiện khi di chuột qua card */
+}
+
+.delete-btn:hover {
+    background: var(--accent); /* Đổi màu khi hover */
+}
+.controls button{
+    padding:8px 10px;
+    border-radius:8px;
+    border:none;
+    background:transparent;
+    color:var(--muted);
+    cursor:pointer;
+}
+
+/*Album anh*/
+
+.filters {
+    padding: 10px 22px;
+    display: flex;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 12px;
+    margin: 10px 22px;
+}
+
+.filter-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+.filter-btn:hover {
+    color: #fff;
+}
+.filter-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: linear-gradient(180deg, rgba(10,132,255,0.05), transparent);
+}
+
+/* Main container */
+.container{padding:22px}
+
+/* Empty state */
+.empty {
+    display: none;
+    color: var(--muted);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.03);
+    text-align: center;
+}
+
+.empty.show {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Grid gallery */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px,1fr));
+    gap:var(--gap);
+}
+
+/* Card */
+.card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    border-radius:10px;
+    overflow:hidden;
+    position:relative;
+    cursor:zoom-in;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:110px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:1px solid rgba(255,255,255,0.03);
+}
+.card:hover{ transform:translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.6);}
+
+/* thumb image */
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* caption overlay */
+.card .meta{
+    position:absolute;
+    left:8px;
+    right:8px;
+    bottom:8px;
+    padding:6px 8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.5));
+    border-radius:6px;
+    font-size:13px;
+    color:#fff;
+}
+
+/* lightbox */
+.lightbox{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.8);
+    z-index:9999;
+}
+
+.lightbox.show {
+    display: flex;
+}
+
+.lb-content{
+    max-width:90%;
+    max-height:80%;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+}
+.lightbox img{
+    max-width:100%;
+    max-height:70vh;
+    border-radius:8px;
+    object-fit:contain;
+    box-shadow:0 12px 40px rgba(0,0,0,0.7);
+}
+
+.caption{
+    color:var(--muted);
+    font-size:14px;
+    text-align:center;
+}
+
+/* controls inside lightbox */
+.lightbox .close{
+    position:fixed;
+    top:18px;
+    right:24px;
+    font-size:30px;
+    background:transparent;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+}
+.nav{
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,0.04);
+    border:none;
+    width:46px;
+    height:46px;
+    border-radius:8px;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+.nav.prev{left:16px}
+.nav.next{right:16px}
+
+/* responsive tweaks */
+@media (max-width:640px){
+    .controls{flex-direction:column;align-items:flex-end}
+    .controls input[type="url"]{min-width:160px}
+    .nav{width:40px;height:40px}
+}
