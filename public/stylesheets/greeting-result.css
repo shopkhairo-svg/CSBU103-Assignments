@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    padding: 40px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.greeting-box {
+    display: inline-block;
+    padding: 20px 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.greeting-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.name-box {
+    margin-top: 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    background: #4455c0;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.days-left {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #444;
+}

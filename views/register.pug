@@ -1,0 +1,110 @@
+html
+  head
+    title= "Lập trình ứng dụng Web"
+    meta(name='viewport' content="width=device-width, initial-scale=1.0")
+    meta(charset='UTF-8')
+    link(href='/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+    block scripts
+        script(src='https://code.jquery.com/jquery-3.7.1.min.js')
+        script(src='/js/app.js')
+        script(src='/bootstrap/js/bootstrap.bundle.min.js')
+  body
+    block content
+      // Form Đăng Ký
+      h2.text-center Đăng Ký Tài Khoản Mới
+      div.container
+        form#registrationForm(action='/register', method='POST', class='col-md-6 mx-auto mt-4 p-4 border rounded shadow-sm')
+          // --- Trường Email (Username) ---
+          div.mb-3
+            label.form-label(for='username') Email (Username):
+            input#username.form-control(type='text', name='username', placeholder='vd: ten@email.com', required)
+            span#usernameError.text-danger.form-text
+
+          // --- Trường Mật khẩu ---
+          div.mb-3
+            label.form-label(for='password') Mật khẩu:
+            input#password.form-control(type='password', name='password', placeholder='>= 6 ký tự, có số, ký tự đặc biệt', required)
+            span#passwordError.text-danger.form-text
+
+          // --- Trường Xác nhận Mật khẩu ---
+          div.mb-3
+            label.form-label(for='confirmPassword') Xác nhận mật khẩu:
+            input#confirmPassword.form-control(type='password', name='confirmPassword', required)
+            span#confirmPasswordError.text-danger.form-text
+
+          button#submitBtn.btn.btn-primary.w-100(type='submit', disabled) Đăng Ký
+      
+      // Mã JavaScript/jQuery Validation
+      script.
+        $(document).ready(function() {
+            // Regex cho Email format và Password Rules
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const passwordRuleRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{6,}$/;
+
+            let isUsernameValid = false;
+            let isPasswordValid = false;
+            let isConfirmPasswordValid = false;
+
+            // Hàm kiểm tra tổng thể và bật/tắt nút submit
+            function updateSubmitButton() {
+                if (isUsernameValid && isPasswordValid && isConfirmPasswordValid) {
+                    $('#submitBtn').prop('disabled', false);
+                } else {
+                    $('#submitBtn').prop('disabled', true);
+                }
+            }
+
+            // Validation Username (Email)
+            $('#username').on('input blur', function() {
+                const username = $(this).val().trim();
+                const errorSpan = $('#usernameError');
+                
+                if (!emailRegex.test(username)) {
+                    errorSpan.text('Email không hợp lệ.');
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                    isUsernameValid = false;
+                } else {
+                    errorSpan.text('');
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                    isUsernameValid = true;
+                }
+                updateSubmitButton();
+            });
+
+            // Validation Password
+            $('#password').on('input blur', function() {
+                const password = $(this).val();
+                const errorSpan = $('#passwordError');
+                
+                if (!passwordRuleRegex.test(password)) {
+                    errorSpan.text('Mật khẩu tối thiểu 6 ký tự, phải có 1 số và 1 ký tự đặc biệt.');
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                    isPasswordValid = false;
+                } else {
+                    errorSpan.text('');
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                    isPasswordValid = true;
+                }
+                
+                $('#confirmPassword').trigger('input'); 
+                updateSubmitButton();
+            });
+
+            // Validation Confirm Password
+            $('#confirmPassword').on('input blur', function() {
+                const password = $('#password').val();
+                const confirmPassword = $(this).val();
+                const errorSpan = $('#confirmPasswordError');
+
+                if (password !== confirmPassword || confirmPassword === "") {
+                    errorSpan.text('Xác nhận mật khẩu không khớp hoặc còn trống.');
+                    $(this).removeClass('is-valid').addClass('is-invalid');
+                    isConfirmPasswordValid = false;
+                } else {
+                    errorSpan.text('');
+                    $(this).removeClass('is-invalid').addClass('is-valid');
+                    isConfirmPasswordValid = true;
+                }
+                updateSubmitButton();
+            });
+        });

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting Application</title>
+    <link rel="stylesheet" href="/stylesheets/greeting.css">
+</head>
+<body>
+
+    <h1>Greeting Application</h1>
+
+    <form action="/greeting-result" method="get">
+
+        <label>Your Name:</label>
+        <input type="text" name="name" required>
+        <br><br>
+
+        <label>Date of Birth:</label><br>
+
+        <!-- DAY -->
+        <select name="day" required>
+            <option value="">Day</option>
+            <% for (let d = 1; d <= 31; d++) { %>
+                <option value="<%= d %>"><%= d %></option>
+            <% } %>
+        </select>
+
+        <!-- MONTH -->
+        <select name="month" required>
+            <option value="">Month</option>
+            <% for (let m = 1; m <= 12; m++) { %>
+                <option value="<%= m %>"><%= m %></option>
+            <% } %>
+        </select>
+
+        <!-- YEAR -->
+        <select name="year" required>
+            <option value="">Year</option>
+            <% for (let y = 1950; y <= 2025; y++) { %>
+                <option value="<%= y %>"><%= y %></option>
+            <% } %>
+        </select>
+
+        <br><br>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Clear</button>
+
+    </form>
+
+</body>
+</html>

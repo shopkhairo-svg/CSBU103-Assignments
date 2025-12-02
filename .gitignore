@@ -1,0 +1,3 @@
+# Các file và thư mục cần bỏ qua
+/node_modules
+.DS_Store
